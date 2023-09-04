@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <title>Canvas</title>
+    <sxcript src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></sxcript>
+    <script src="js/libs/jquery-3.1.0.min.js"></script>
+    <script src="js/Player.js"></script>
+    <script src="js/libs/tinysynth/webaudio-tinysynth.js"></script>
+
+
+    <script>
+        "use strict";
+
+        let autoStart = true;
+        autoStart = false;
+        let player = null;
+        //let synth = null;  // defined globally in Player.js
+
+        function kplay(key) {
+            synth.send([0x90, key, 100]);
+        }
+
+        function kup(key) {
+            synth.send([0x80, key, 0]);
+        }
+
+        function setProgram(idx) {
+            console.log("** setProgram", idx);
+            //synth.send([0xc0, idx]);
+            synth.setProgram(0, idx);
+            synth.setProgram(1, idx+10);
+        }
+
+        // on document ready call the function to draw the circles
+        $(document).ready(function () {
+            synth = initSynth();
+            player = new Player("myCanvas");
+            player.reset();
+            if (autoStart)
+                player.start();
+            //
+        });
+    </script>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+    </canvas>
+    <br>
+    <button id="play" onclick="player.togglePlay();">Play</button>
+    &nbsp;
+    <button id="reset" onclick="player.reset();">Reset</button>
+    &nbsp;
+    speed:
+    <input type="range" id="speedSlider" min="0" max="100" value="50" oninput="player.handleSpeed(this.value);">
+    &nbsp;
+    dec-acc:
+    <input type="range" id="accSlider" min="0" max="100" value="50" oninput="player.handleAcc(this.value);">
+    <br>
+    <span id="status"></span>
+    <span id="speed"></span>
+    <br />
+    Timbre:
+    <select id="prog" onchange="setProgram(this.selectedIndex)"></select>
+    &nbsp;&nbsp;&nbsp;
+    Notes:
+    <select id="notes" onchange="player.setNotes(this.value)">
+        <option value="chromatic">chromatic</option>
+        <option value="major">major</option>
+        <option value="multi">multi</option>
+        <option value="wholes">wholes</option>
+        <option value="halfs">halfs</option>
+        <option value="quarters">quarters</option>
+        <option value="eighths" selected>eighths</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;
+    Labels:
+    <input type="checkbox" id="labels" checked />
+    <br />
+    <div id="keys">
+        &nbsp<br />
+        <button onmousedown="kplay(60)" onmouseup="kup(60)">C</button>
+        <button onmousedown="kplay(62)" onmouseup="kup(62)">D</button>
+        <button onmousedown="kplay(64)" onmouseup="kup(64)">E</button>
+        <button onmousedown="kplay(65)" onmouseup="kup(65)">F</button>
+        <button onmousedown="kplay(67)" onmouseup="kup(67)">G</button>
+        <button onmousedown="kplay(69)" onmouseup="kup(69)">A</button>
+        <button onmousedown="kplay(71)" onmouseup="kup(71)">B</button>
+        <button onmousedown="kplay(72)" onmouseup="kup(72)">C</button>
+        &nbsp;&nbsp;
+        Quality:
+        <select onchange="synth.setQuality(this.selectedIndex)">
+            <option>Quality=0</option>
+            <option selected>Quality=1</option>
+        </select>
+    </div>
+        This was inspired by
+        <a href="https://youtu.be/6l2EtiEC0pU">this visualization</a>
+</body>
+
+</html>
