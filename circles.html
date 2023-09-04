@@ -1,12 +1,10 @@
 <html>
 
 <head>
-    <title>Canvas</title>
-    <sxcript src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></sxcript>
+    <title>Risset Rhyrhm Circles</title>
     <script src="js/libs/jquery-3.1.0.min.js"></script>
     <script src="js/Player.js"></script>
     <script src="js/libs/tinysynth/webaudio-tinysynth.js"></script>
-
 
     <script>
         "use strict";
@@ -28,7 +26,7 @@
             console.log("** setProgram", idx);
             //synth.send([0xc0, idx]);
             synth.setProgram(0, idx);
-            synth.setProgram(1, idx+10);
+            synth.setProgram(1, idx + 10);
         }
 
         // on document ready call the function to draw the circles
@@ -41,11 +39,40 @@
             //
         });
     </script>
+
+    <style>
+        td {
+            vertical-align: top;
+            padding: 5px;
+        }
+    </style>
 </head>
 
 <body>
-    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
-    </canvas>
+    <table>
+        <tr>
+            <td>
+                <canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+                </canvas>
+            </td>
+            <td>
+                <div>
+                    Risset Rhythm Visualization Player
+                    <p></p>
+                    This visualization is based on the Risset rhythm, which is a
+                    rhythmic pattern that is perceived as ever increasing or
+                    decreasing in tempo, even though the pattern exactly repeats
+                    over time.
+                    <p></p>
+                    This page was inspired by
+                    <a href="https://youtu.be/6l2EtiEC0pU">this visualization</a>
+                    A goal of this work is to have a similar 3D visualization running
+                    in three.js.
+                </div>
+            </td>
+        </tr>
+    </table>
+
     <br>
     <button id="play" onclick="player.togglePlay();">Play</button>
     &nbsp;
@@ -94,8 +121,7 @@
             <option selected>Quality=1</option>
         </select>
     </div>
-        This was inspired by
-        <a href="https://youtu.be/6l2EtiEC0pU">this visualization</a>
+
 </body>
 
 </html>
