@@ -59,16 +59,27 @@
                 <div>
                     Risset Rhythm Visualization Player
                     <br>
-                    <a href="github.com/WorldViews/RissetCircles">Github Repo</a>
+                    <a href="https://github.com/WorldViews/RissetCircles">Github Repo</a>
                     <p></p>
                     This visualization is based on the Risset rhythm, which is a
                     rhythmic pattern that is perceived as ever increasing or
                     decreasing in tempo, even though the pattern exactly repeats
-                    over time.
+                    over time. 
+                    <a
+                    href="https://quod.lib.umich.edu/i/icmc/bbp2372.2011.096/1/--scheduling-and-composing-with-risset-eternal-accelerando?page=root;size=175;view=text"
+                    >Here</a> is an excellent discussion by Dan Stowell.
+                    <p></p>
+                    The basic construction is to have multiple identical voices, each
+                    void accellerating or decellerating as it plays.   Succesive voices
+                    have tempos differing by a factor of two.  In the visualization each
+                    voice is depicted by a circle, with a radius proportional to the log
+                    of the tempo.  A weighting function emphasizes the voices near
+                    nominal overall temp.   As voices become very slow or very fast and
+                    the weights approach zero, the voices are replaced by new voices.
                     <p></p>
                     This page was inspired by
-                    <a href="https://youtu.be/6l2EtiEC0pU">this visualization</a>
-                    A goal of this work is to have a similar 3D visualization running
+                    <a href="https://youtu.be/6l2EtiEC0pU">this visualization</a>.  
+                    A goal of this project is to have a similar 3D visualization running
                     in three.js.
                 </div>
             </td>
