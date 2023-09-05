@@ -58,8 +58,56 @@
             <td>
                 <div>
                     Risset Rhythm Visualization Player
-                    <br>
+                    &nbsp;&nbsp;
                     <a href="https://github.com/WorldViews/RissetCircles">Github Repo</a>
+                    <p>
+                    <button id="play" onclick="player.togglePlay();">Play</button>
+                    &nbsp;
+                    <button id="reset" onclick="player.reset();">Reset</button>
+                    &nbsp;
+                    speed:
+                    <input type="range" id="speedSlider" min="0" max="100" value="50" oninput="player.handleSpeed(this.value);">
+                    &nbsp;
+                    dec-acc:
+                    <input type="range" id="accSlider" min="0" max="100" value="50" oninput="player.handleAcc(this.value);">
+                    <br>
+                    <span id="status"></span>
+                    <span id="speed"></span>
+                    <br />
+                    Timbre:
+                    <select id="prog" onchange="setProgram(this.selectedIndex)"></select>
+                    &nbsp;&nbsp;&nbsp;
+                    Notes:
+                    <select id="notes" onchange="player.setNotes(this.value)">
+                        <option value="chromatic">chromatic</option>
+                        <option value="major">major</option>
+                        <option value="multi">multi</option>
+                        <option value="wholes">wholes</option>
+                        <option value="halfs">halfs</option>
+                        <option value="quarters">quarters</option>
+                        <option value="eighths" selected>eighths</option>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;
+                    Labels:
+                    <input type="checkbox" id="labels" checked />
+                    <br />
+                    <div id="keys">
+                        &nbsp<br />
+                        <button onmousedown="kplay(60)" onmouseup="kup(60)">C</button>
+                        <button onmousedown="kplay(62)" onmouseup="kup(62)">D</button>
+                        <button onmousedown="kplay(64)" onmouseup="kup(64)">E</button>
+                        <button onmousedown="kplay(65)" onmouseup="kup(65)">F</button>
+                        <button onmousedown="kplay(67)" onmouseup="kup(67)">G</button>
+                        <button onmousedown="kplay(69)" onmouseup="kup(69)">A</button>
+                        <button onmousedown="kplay(71)" onmouseup="kup(71)">B</button>
+                        <button onmousedown="kplay(72)" onmouseup="kup(72)">C</button>
+                        &nbsp;&nbsp;
+                        Quality:
+                        <select onchange="synth.setQuality(this.selectedIndex)">
+                            <option>Quality=0</option>
+                            <option selected>Quality=1</option>
+                        </select>
+                    </div>
                     <p></p>
                     This visualization is based on the Risset rhythm, which is a
                     rhythmic pattern that is perceived as ever increasing or
@@ -67,7 +115,7 @@
                     over time. 
                     <a
                     href="https://quod.lib.umich.edu/i/icmc/bbp2372.2011.096/1/--scheduling-and-composing-with-risset-eternal-accelerando?page=root;size=175;view=text"
-                    >Here</a> is an excellent discussion by Dan Stowell.
+                    >Here</a> is a technical discussion by Dan Stowell.
                     <p></p>
                     The basic construction is to have multiple identical voices, each
                     void accellerating or decellerating as it plays.   Succesive voices
@@ -81,59 +129,13 @@
                     <a href="https://youtu.be/6l2EtiEC0pU">this visualization</a>.  
                     A goal of this project is to have a similar 3D visualization running
                     in three.js.
+                
                 </div>
+
             </td>
         </tr>
     </table>
 
-    <br>
-    <button id="play" onclick="player.togglePlay();">Play</button>
-    &nbsp;
-    <button id="reset" onclick="player.reset();">Reset</button>
-    &nbsp;
-    speed:
-    <input type="range" id="speedSlider" min="0" max="100" value="50" oninput="player.handleSpeed(this.value);">
-    &nbsp;
-    dec-acc:
-    <input type="range" id="accSlider" min="0" max="100" value="50" oninput="player.handleAcc(this.value);">
-    <br>
-    <span id="status"></span>
-    <span id="speed"></span>
-    <br />
-    Timbre:
-    <select id="prog" onchange="setProgram(this.selectedIndex)"></select>
-    &nbsp;&nbsp;&nbsp;
-    Notes:
-    <select id="notes" onchange="player.setNotes(this.value)">
-        <option value="chromatic">chromatic</option>
-        <option value="major">major</option>
-        <option value="multi">multi</option>
-        <option value="wholes">wholes</option>
-        <option value="halfs">halfs</option>
-        <option value="quarters">quarters</option>
-        <option value="eighths" selected>eighths</option>
-    </select>
-    &nbsp;&nbsp;&nbsp;
-    Labels:
-    <input type="checkbox" id="labels" checked />
-    <br />
-    <div id="keys">
-        &nbsp<br />
-        <button onmousedown="kplay(60)" onmouseup="kup(60)">C</button>
-        <button onmousedown="kplay(62)" onmouseup="kup(62)">D</button>
-        <button onmousedown="kplay(64)" onmouseup="kup(64)">E</button>
-        <button onmousedown="kplay(65)" onmouseup="kup(65)">F</button>
-        <button onmousedown="kplay(67)" onmouseup="kup(67)">G</button>
-        <button onmousedown="kplay(69)" onmouseup="kup(69)">A</button>
-        <button onmousedown="kplay(71)" onmouseup="kup(71)">B</button>
-        <button onmousedown="kplay(72)" onmouseup="kup(72)">C</button>
-        &nbsp;&nbsp;
-        Quality:
-        <select onchange="synth.setQuality(this.selectedIndex)">
-            <option>Quality=0</option>
-            <option selected>Quality=1</option>
-        </select>
-    </div>
 
 </body>
 
